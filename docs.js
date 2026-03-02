@@ -40,6 +40,11 @@
       desc: "MLIR 与 RVV 测试实验环境搭建指南",
       markdownUrl: "docs/compiler/RVVEnvironment.md"
     },
+    "ime-dialect": {
+      title: "SpacemiT IME Dialect",
+      desc: "This document provides a comprehensive guide for using the IME (Integrated Matrix Extension) dialect in buddy-mlir.",
+      markdownUrl: "docs/compiler/IMEDialect.md"
+    },
     "operator-lang": {
       title: "Ruyi AI 算子编程语言",
       desc: "面向 RISC-V 适配 Triton / TileLang",
@@ -147,7 +152,7 @@
         contributorBtn.setAttribute("aria-expanded", "true");
       }
     }
-    if (id === "compiler" || id === "rvv-environment") {
+    if (id === "compiler" || id === "rvv-environment" || id === "ime-dialect") {
       var compilerBtn = document.getElementById("docsNavCompiler");
       var compilerGroup = compilerBtn ? compilerBtn.closest(".docs-nav__group") : null;
       if (compilerGroup && compilerBtn) {
