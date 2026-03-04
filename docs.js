@@ -40,6 +40,11 @@
       desc: "MLIR 与 RVV 测试实验环境搭建指南",
       markdownUrl: "docs/compiler/RVVEnvironment.md"
     },
+    about: {
+      title: "关于",
+      desc: "了解 Ruyi AI 项目的背景、愿景与团队。",
+      markdownUrl: "docs/about/about.md"
+    },
     "ime-dialect": {
       title: "SpacemiT IME Dialect",
       desc: "This document provides a comprehensive guide for using the IME (Integrated Matrix Extension) dialect in buddy-mlir.",
