@@ -55,6 +55,11 @@
       desc: "Gemmini 相关文档",
       markdownUrl: "docs/compiler/Gemmini.md"
     },
+    "adding-operators": {
+      title: "增加算子支持",
+      desc: "增加算子与模型集成相关文档",
+      markdownUrl: "docs/compiler/AddingOperatorsAndModelIntegration.md"
+    },
     "triton-on-riscv": {
       title: "Triton 的 RISC-V 适配",
       desc: "Triton 在 RISC-V 平台上的移植与适配实践。",
@@ -171,7 +176,7 @@
         contributorBtn.setAttribute("aria-expanded", "true");
       }
     }
-    if (id === "compiler" || id === "rvv-environment" || id === "ime-dialect" || id === "gemmini") {
+    if (id === "compiler" || id === "rvv-environment" || id === "ime-dialect" || id === "gemmini" || id === "adding-operators") {
       var compilerBtn = document.getElementById("docsNavCompiler");
       var compilerGroup = compilerBtn ? compilerBtn.closest(".docs-nav__group") : null;
       if (compilerGroup && compilerBtn) {
