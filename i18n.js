@@ -1,6 +1,8 @@
-(function () {
+;(function () {
   var STORAGE_KEY = "ruyiai-lang";
-  var LANG = localStorage.getItem(STORAGE_KEY) || (navigator.language && navigator.language.startsWith("zh") ? "zh" : "en");
+  var LANG =
+    localStorage.getItem(STORAGE_KEY) ||
+    (navigator.language && navigator.language.startsWith("zh") ? "zh" : "en");
 
   var i18n = {
     zh: {
@@ -46,7 +48,7 @@
       "hero.tutorial": "使用教程",
       "hero.overview": "项目架构",
       "footer.privacy": "Privacy",
-      "footer.terms": "Terms",
+      "footer.terms": "Terms"
     },
     en: {
       "nav.home": "Home",
@@ -91,8 +93,8 @@
       "hero.tutorial": "Tutorial",
       "hero.overview": "Project Overview",
       "footer.privacy": "Privacy",
-      "footer.terms": "Terms",
-    },
+      "footer.terms": "Terms"
+    }
   };
 
   function getText(key) {
@@ -101,24 +103,34 @@
 
   function applyLanguage() {
     document.documentElement.lang = LANG === "zh" ? "zh-CN" : "en";
+
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var key = el.getAttribute("data-i18n");
       var text = getText(key);
       if (text) {
-        if (el.getAttribute("aria-label") !== null) el.setAttribute("aria-label", text);
-        else if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") el.placeholder = text;
-        else el.textContent = text;
+        if (el.getAttribute("aria-label") !== null) {
+          el.setAttribute("aria-label", text);
+        } else if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          el.placeholder = text;
+        } else {
+          el.textContent = text;
+        }
       }
     });
+
     document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
       var key = el.getAttribute("data-i18n-html");
       var html = getText(key);
       if (html) el.innerHTML = html;
     });
+
     var toggle = document.getElementById("navLangWrap");
     if (toggle) toggle.classList.toggle("lang-toggle--en", LANG === "en");
+
     if (typeof window.dispatchEvent === "function") {
-      window.dispatchEvent(new CustomEvent("languagechange", { detail: { lang: LANG } }));
+      window.dispatchEvent(
+        new CustomEvent("languagechange", { detail: { lang: LANG } })
+      );
     }
   }
 
@@ -135,22 +147,25 @@
     if (!actions) return;
     var existing = document.getElementById("navLangWrap");
     if (existing) return;
+
     var wrap = document.createElement("button");
     wrap.id = "navLangWrap";
     wrap.type = "button";
-    wrap.className = "lang-toggle" + (LANG === "en" ? " lang-toggle--en" : "");
+    wrap.className =
+      "lang-toggle" + (LANG === "en" ? " lang-toggle--en" : "");
     wrap.setAttribute("aria-label", "Switch language");
     wrap.innerHTML =
       '<span class="lang-toggle__track">' +
-        '<span class="lang-toggle__label lang-toggle__label--zh">中</span>' +
-        '<span class="lang-toggle__label lang-toggle__label--en">En</span>' +
-        '<span class="lang-toggle__thumb"></span>' +
-      '</span>';
+      '<span class="lang-toggle__label lang-toggle__label--zh">中</span>' +
+      '<span class="lang-toggle__label lang-toggle__label--en">En</span>' +
+      '<span class="lang-toggle__thumb"></span>' +
+      "</span>";
     wrap.addEventListener("click", function () {
       var next = LANG === "zh" ? "en" : "zh";
       setLang(next);
       wrap.classList.toggle("lang-toggle--en", next === "en");
     });
+
     actions.insertBefore(wrap, actions.firstChild);
     applyLanguage();
   }
@@ -169,3 +184,4 @@
   window.ruyiaiSetLang = setLang;
   window.ruyiaiGetText = getText;
 })();
+
